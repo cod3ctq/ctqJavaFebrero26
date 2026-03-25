@@ -1,0 +1,89 @@
+package com.ms_persistence.entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+//HIJA
+@Entity
+@Table(name="TARJETAS")
+public class Tarjeta implements Serializable {
+
+    @Id
+    @Column(name = "TARJETA_ID", columnDefinition = "NUMBER")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int tarjetaId;
+    @Column(name = "CUENTA_ID", columnDefinition = "NUMBER")
+    private int cuentaId;
+
+    @ManyToOne
+    @JoinColumn (name = "TIPO_T", columnDefinition = "NUMBER")
+    @JsonBackReference
+    private TipoTarjeta tipo;
+
+    @Column(name = "NUM_TARJETA", columnDefinition = "VARCHAR2(16)")
+    private String numTarjeta;
+    @Column(name = "NIP", columnDefinition = "VARCHAR2(4)")
+    private String nip;
+    @Column(name = "FECHA_VEN", columnDefinition = "DATE")
+    private LocalDate fechaVen;
+    @Column(name = "STATUS", columnDefinition = "NVARCHAR2(50)")
+    private String status;
+
+    public int getTarjetaId() {
+        return tarjetaId;
+    }
+
+    public void setTarjetaId(int tarjetaId) {
+        this.tarjetaId = tarjetaId;
+    }
+
+    public int getCuentaId() {
+        return cuentaId;
+    }
+
+    public void setCuentaId(int cuentaId) {
+        this.cuentaId = cuentaId;
+    }
+
+    public TipoTarjeta getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoTarjeta tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getNumTarjeta() {
+        return numTarjeta;
+    }
+
+    public void setNumTarjeta(String numTarjeta) {
+        this.numTarjeta = numTarjeta;
+    }
+
+    public String getNip() {
+        return nip;
+    }
+
+    public void setNip(String nip) {
+        this.nip = nip;
+    }
+
+    public LocalDate getFechaVen() {
+        return fechaVen;
+    }
+
+    public void setFechaVen(LocalDate fechaVen) {
+        this.fechaVen = fechaVen;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+}
